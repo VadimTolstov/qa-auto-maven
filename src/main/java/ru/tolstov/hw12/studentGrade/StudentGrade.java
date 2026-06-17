@@ -22,4 +22,13 @@ public class StudentGrade<T extends Number> {
     public T getGrade() {
         return grade;
     }
+
+    @Override
+    public String toString() {
+        return "StudentGrade{" +
+                "name='" + name + '\'' +
+                ", lessonName='" + lessonName + '\'' +
+                ", grade=" + grade +
+                '}';
+    }
 }
