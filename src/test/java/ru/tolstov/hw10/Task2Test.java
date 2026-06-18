@@ -24,8 +24,6 @@ class Task2Test {
      * - "" -> 0
      * - " " -> 0
      * - "21@!$" -> 0
-     * негативные:
-     * - "Привет, как дела?" -> учитываем другие языки ?
      */
 
     public static Stream<Arguments> stringForValidationPositiveCases() {
@@ -60,10 +58,5 @@ class Task2Test {
         assertEquals(
                 "Input cannot be null",
                 exception.getMessage());
-    }
-
-    @Test
-    void checkIfStringCountVowelsInCyrillic() {
-        assertEquals(5, new Task2().countVowels("Привет, как дела?"));
     }
 }

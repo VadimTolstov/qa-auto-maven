@@ -15,8 +15,8 @@ class Task5Test {
      * - 2030 -> false
      * - 2000 -> true
      * - 2020 -> true
-     * - 2100 -> true
-     * - 1900 -> true
+     * - 2100 -> false
+     * - 1900 -> false
      * граничные:
      * - 1 -> false
      * негативные:
@@ -28,9 +28,7 @@ class Task5Test {
     @ParameterizedTest
     @ValueSource(ints = {
             2000,
-            2020,
-            2100,
-            1900
+            2020
     })
     void checkIfYearLeapYear(int year) {
         assertTrue(new Task5().isLeapYear(year));
@@ -40,7 +38,9 @@ class Task5Test {
     @ValueSource(ints = {
             2026,
             2030,
-            2110
+            2110,
+            2100,
+            1900
     })
     void checkIfYearNotLeapYear(int year) {
         assertFalse(new Task5().isLeapYear(year));

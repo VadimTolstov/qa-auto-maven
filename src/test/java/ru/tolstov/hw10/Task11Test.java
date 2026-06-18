@@ -5,6 +5,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -56,7 +57,7 @@ class Task11Test {
     void checkIfInvalidListToFilterEvenNumbers() {
         assertThrows(
                 IllegalArgumentException.class,
-                () -> new Task11().filterEvenNumbers(List.of(2, null, 4)));
+                () -> new Task11().filterEvenNumbers(Arrays.asList(2, null, 4)));
     }
 
     @Test

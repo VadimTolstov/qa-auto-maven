@@ -6,6 +6,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -62,6 +63,6 @@ class Task12Test {
     void checkIfInvalidListToSortByLength() {
         assertThrows(
                 IllegalArgumentException.class,
-                () -> new Task12().sortByLength(List.of("a", null, "bc")));
+                () -> new Task12().sortByLength(Arrays.asList("a", null, "bc")));
     }
 }

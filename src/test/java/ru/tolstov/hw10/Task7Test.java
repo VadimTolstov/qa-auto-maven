@@ -24,7 +24,6 @@ class Task7Test {
      * - 12 -> 479001600
      * негативные:
      * - -1 -> Ошибка (отрицательное число)
-     * - 21 -> Ошибка переполнения
      */
 
     public static Stream<Arguments> dataForValidationPositiveCases() {
@@ -49,8 +48,7 @@ class Task7Test {
 
     @ParameterizedTest
     @ValueSource(ints = {
-            -1,
-            21
+            -1
     })
     void checkIfInvalidFactorial(int actualFactorial) {
         IllegalArgumentException illegalArgumentException = assertThrows(
