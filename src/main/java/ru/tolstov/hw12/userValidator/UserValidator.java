@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 
 public class UserValidator {
 
-    private boolean invalidUserException;
+    private volatile boolean invalidUserException;
 
     public boolean isInvalidUserException() {
         return invalidUserException;

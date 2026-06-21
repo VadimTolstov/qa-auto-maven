@@ -13,7 +13,7 @@ public class MovieService<T extends Number> {
 
     public  void  addRating(Movie movie, Rating<T> rating) {
         if (movie == null || rating == null) {
-            throw new IllegalArgumentException("movie или estimation не должны быть null");
+            throw new IllegalArgumentException("movie или rating не должны быть null");
         }
         final double value = rating.estimation().doubleValue();
         if (value <= 0 || value >= 11) {
