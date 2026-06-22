@@ -131,7 +131,7 @@ class GradeServiceTest {
     }
 
     @Test
-    void checkGetAverageGradeIfListIsEmpty() {
+    void checkGetAverageGradeIfListEmpty() {
         assertEquals(0.0, gradeService.getAverageGrade("Математика"));
     }
 
@@ -154,7 +154,7 @@ class GradeServiceTest {
     }
 
     @Test
-    void checkGetAverageGradeIfListIsContainsNullAndGradeIsNull() {
+    void checkGetAverageGradeIfListIsContainsNullAndGradeNull() {
         gradeService.studentGradeList.add(new StudentGrade<Double>("Анна", "Физика", null));
         gradeService.studentGradeList.add(null);
         gradeService.studentGradeList.add(new StudentGrade<>("Олег", "Физика", 50.0));
@@ -171,7 +171,7 @@ class GradeServiceTest {
     }
 
     @Test
-    void checkGetAverageGradeIfLessonNameIsNull() {
+    void checkGetAverageGradeIfLessonNameNull() {
         assertEquals(0.0, gradeService.getAverageGrade(null));
     }
 

@@ -92,7 +92,7 @@ class MovieServiceTest {
 
 
     @Test
-    void checkValidGetAverageRatingWhenNotFilmName() {
+    void checkValidGetAverageRatingWhenNoFilmName() {
         movieService.addRating(new Movie("Inception"), new Rating<>(2));
         assertEquals(0.0, movieService.getAverageRating(new Movie("Капитан немо")));
     }

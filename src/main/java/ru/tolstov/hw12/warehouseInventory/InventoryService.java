@@ -26,14 +26,15 @@ public class InventoryService {
 
     public List<Product> getProductsByCategory(String category) {
         Objects.requireNonNull(category, "Категория для поиска не должна быть null");
-        if (!isInventoryOpen) {
-            throw new IllegalArgumentException("Доступ к сладу закрыт");
-        }
-        return List.copyOf(inventory.entrySet().stream()
+        List<Product> products = inventory.entrySet().stream()
                 .filter(entry -> Objects.nonNull(entry.getKey()) && Objects.equals(category, entry.getKey()))
                 .map(Map.Entry::getValue)
                 .findAny()
-                .orElseThrow(() -> new OutOfStockException("На складе нет категории: " + category)));
+                .orElseThrow(() -> new OutOfStockException("На складе нет категории: " + category));
+        if (products.isEmpty()) {
+            throw new OutOfStockException("Товары в категории '" + category + "' закончились");
+        }
+        return List.copyOf(products);
     }
 
     public List<Product> getProductsByPrice(double price) {
