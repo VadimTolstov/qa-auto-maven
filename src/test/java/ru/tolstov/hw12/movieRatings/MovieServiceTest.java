@@ -162,7 +162,7 @@ class MovieServiceTest {
                     for (int j = 0; j < additionsPerThread; j++) {
                         movieService.addRating(
                                 new Movie(threadId + "-" + j),
-                                new Rating(1)
+                                new Rating<>(1)
                         );
                     }
                 } finally {
