@@ -22,8 +22,8 @@ class MovieServiceTest {
     /**
      * №	Тест	                                     Входные данные	                                        Ожидаемый результат
      * 1	Добавление рейтинга         	             movie=фильм "Inception", rating=Rating<Integer>(8)	    Рейтинг добавлен в хранилище, средняя оценка = 8.0
-     * 2	Добавление рейтинга   0.1      	             movie=фильм "Inception", rating=Rating<Double>(0.1)	Рейтинг добавлен в хранилище, средняя оценка = 0.1
-     * 3	Добавление рейтинга   10.9      	         movie=фильм "Inception", rating=Rating<Double>(10.9)	Рейтинг добавлен в хранилище, средняя оценка = 10.9
+     * 2	Добавление рейтинга   1.1      	             movie=фильм "Inception", rating=Rating<Double>(1.1)	Рейтинг добавлен в хранилище, средняя оценка = 1.1
+     * 3	Добавление рейтинга   9.9      	             movie=фильм "Inception", rating=Rating<Double>(9.9)	Рейтинг добавлен в хранилище, средняя оценка = 9.9
      * 4	Добавление рейтинга на границе 1	         movie=фильм "Matrix", rating=Rating<Integer>(1)	    Допустимо, средняя = 1.0
      * 5	Добавление рейтинга на границе 10	         movie=фильм "Matrix", rating=Rating<Integer>(10)	    Допустимо, средняя = 10.0 (после одной оценки)
      * 6	Добавление null-фильма	                     movie=null, rating=Rating<Integer>(5)	                Исключение IllegalArgumentException
@@ -44,8 +44,8 @@ class MovieServiceTest {
     public static Stream<Arguments> dataForValidationPositiveCasesAddRating() {
         return Stream.of(
                 Arguments.of(new Movie("Inception"), new Rating<>(8)),
-                Arguments.of(new Movie("Inception"), new Rating<>(0.1)),
-                Arguments.of(new Movie("Inception"), new Rating<>(10.9)),
+                Arguments.of(new Movie("Inception"), new Rating<>(1.1)),
+                Arguments.of(new Movie("Inception"), new Rating<>(9.9)),
                 Arguments.of(new Movie("Inception"), new Rating<>(1)),
                 Arguments.of(new Movie("Inception"), new Rating<>(10))
         );
@@ -71,12 +71,12 @@ class MovieServiceTest {
 
     public static Stream<Arguments> dataForInvalidAddRatingCases() {
         return Stream.of(
-                Arguments.of(new Movie("Inception"), null, "movie или estimation не должны быть null"),
-                Arguments.of(new Movie("Inception"), new Rating<>(0), "Рейтинг должен быть > 0 и < 11, передан: 0.0"),
-                Arguments.of(new Movie("Inception"), new Rating<>(-10), "Рейтинг должен быть > 0 и < 11, передан: -10.0"),
-                Arguments.of(new Movie("Inception"), new Rating<>(11), "Рейтинг должен быть > 0 и < 11, передан: 11.0"),
-                Arguments.of(new Movie("Inception"), new Rating<>(100), "Рейтинг должен быть > 0 и < 11, передан: 100.0"),
-                Arguments.of(null, new Rating<>(10), "movie или estimation не должны быть null")
+                Arguments.of(new Movie("Inception"), null, "movie или rating не должны быть null"),
+                Arguments.of(new Movie("Inception"), new Rating<>(0), "Рейтинг должен быть >= 1 и <= 10, передан: 0.0"),
+                Arguments.of(new Movie("Inception"), new Rating<>(-10), "Рейтинг должен быть >= 1 и <= 10, передан: -10.0"),
+                Arguments.of(new Movie("Inception"), new Rating<>(11), "Рейтинг должен быть >= 1 и <= 10, передан: 11.0"),
+                Arguments.of(new Movie("Inception"), new Rating<>(100), "Рейтинг должен быть >= 1 и <= 10, передан: 100.0"),
+                Arguments.of(null, new Rating<>(10), "movie или rating не должны быть null")
         );
     }
 

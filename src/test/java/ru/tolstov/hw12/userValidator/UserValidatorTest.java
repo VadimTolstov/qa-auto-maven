@@ -82,7 +82,7 @@ class UserValidatorTest {
     @ParameterizedTest
     @MethodSource("dataForValidationPositiveCases")
     void checkValidUser(User user) {
-        userValidator.setInvalidUserException(true);
+        userValidator.setValidationEnabled(true);
         assertDoesNotThrow(() -> userValidator.isValidUser(user));
     }
 
@@ -101,7 +101,7 @@ class UserValidatorTest {
     @ParameterizedTest
     @MethodSource("dataForInvalidUserNameCases")
     void checkInvalidUserName(User user) {
-        userValidator.setInvalidUserException(true);
+        userValidator.setValidationEnabled(true);
         InvalidUserException invalidUserException = assertThrows(
                 InvalidUserException.class,
                 () -> userValidator.isValidUser(user)
@@ -122,7 +122,7 @@ class UserValidatorTest {
     @ParameterizedTest
     @MethodSource("dataForInvalidUserAgeCases")
     void checkInvalidUserAge(User user) {
-        userValidator.setInvalidUserException(true);
+        userValidator.setValidationEnabled(true);
         InvalidUserException invalidUserException = assertThrows(
                 InvalidUserException.class,
                 () -> userValidator.isValidUser(user)
@@ -143,7 +143,7 @@ class UserValidatorTest {
     @ParameterizedTest
     @MethodSource("dataForInvalidUserEmailCases")
     void checkInvalidUserEmail(User user) {
-        userValidator.setInvalidUserException(true);
+        userValidator.setValidationEnabled(true);
         InvalidUserException invalidUserException = assertThrows(
                 InvalidUserException.class,
                 () -> userValidator.isValidUser(user)
@@ -166,7 +166,7 @@ class UserValidatorTest {
 
     @Test
     void checkExceptionIfArgumentNull() {
-        userValidator.setInvalidUserException(true);
+        userValidator.setValidationEnabled(true);
         InvalidUserException invalidUserException = assertThrows(
                 InvalidUserException.class,
                 () -> userValidator.isValidUser(null));

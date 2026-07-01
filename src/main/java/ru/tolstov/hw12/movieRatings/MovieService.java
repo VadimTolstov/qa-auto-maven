@@ -16,8 +16,8 @@ public class MovieService<T extends Number> {
             throw new IllegalArgumentException("movie или rating не должны быть null");
         }
         final double value = rating.estimation().doubleValue();
-        if (value <= 0 || value >= 11) {
-            throw new IllegalArgumentException("Рейтинг должен быть > 0 и < 11, передан: " + value);
+        if (value < 1 || value > 10) {
+            throw new IllegalArgumentException("Рейтинг должен быть >= 1 и <= 10, передан: " + value);
         }
         mapRatingsMovies.computeIfAbsent(movie, r -> new CopyOnWriteArrayList<>()).add(rating);
     }

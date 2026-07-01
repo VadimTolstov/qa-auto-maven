@@ -7,18 +7,18 @@ import java.util.regex.Pattern;
 
 public class UserValidator {
 
-    private volatile boolean invalidUserException;
+    private volatile boolean validationEnabled;
 
-    public boolean isInvalidUserException() {
-        return invalidUserException;
+    public boolean isValidationEnabled() {
+        return validationEnabled;
     }
 
-    public void setInvalidUserException(boolean invalidUserException) {
-        this.invalidUserException = invalidUserException;
+    public void setValidationEnabled(boolean validationEnabled) {
+        this.validationEnabled = validationEnabled;
     }
 
     public void isValidUser(User user) {
-        if (invalidUserException) {
+        if (validationEnabled) {
             if (user == null) {
                 throw new InvalidUserException("Пользователь не должен быть null");
             }

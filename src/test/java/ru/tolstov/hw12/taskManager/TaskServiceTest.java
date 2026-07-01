@@ -25,6 +25,10 @@ class TaskServiceTest {
      * 9	Фильтрация с null статусом	                    getTasksByStatusAndPriority(null, ...)	                    NullPointerException
      * 10	Фильтрация с null приоритетом	                getTasksByStatusAndPriority(..., null)	                    NullPointerException
      * 11	Создание задачи с null ID	                    new Task<>(null, ...)	                                    NullPointerException
+     * 12	Фильтрация только по статусу	                3 задачи, запрос статуса ToDo	                            Возвращаются задачи с id=1 и id=3
+     * 13	Фильтрация только по приоритету	                3 задачи, запрос приоритета Low	                            Возвращается задача с id=2
+     * 14	Фильтрация по статусу с null	                getTasksByStatus(null)	                                    NullPointerException
+     * 15	Фильтрация по приоритету с null	                getTasksByPriority(null)	                                NullPointerException
      */
 
     private TaskService<Integer> service;
@@ -124,7 +128,6 @@ class TaskServiceTest {
         assertEquals(0, storedCal.get(Calendar.MINUTE));
         assertEquals(0, storedCal.get(Calendar.SECOND));
         assertEquals(0, storedCal.get(Calendar.MILLISECOND));
-
     }
 
     @Test
@@ -150,5 +153,42 @@ class TaskServiceTest {
     @Test
     void constructTaskWithNullIdThrowsNPE() {
         assertThrows(NullPointerException.class, () -> new Task<>(null, Status.ToDo, Priority.Low, new Date()));
+    }
+
+
+    @Test
+    void getTasksByStatusReturnsCorrectTasks() {
+        service.add(task1);
+        service.add(task2);
+        service.add(task3);
+
+        Set<Task<Integer>> result = service.getTasksByStatus(Status.ToDo);
+        assertEquals(2, result.size());
+        assertTrue(result.contains(task1));
+        assertTrue(result.contains(task3));
+        assertFalse(result.contains(task2));
+    }
+
+    @Test
+    void getTasksByPriorityReturnsCorrectTasks() {
+        service.add(task1);
+        service.add(task2);
+        service.add(task3);
+
+        Set<Task<Integer>> result = service.getTasksByPriority(Priority.Low);
+        assertEquals(1, result.size());
+        assertTrue(result.contains(task2));
+        assertFalse(result.contains(task1));
+        assertFalse(result.contains(task3));
+    }
+
+    @Test
+    void getTasksByStatusWithNullThrowsNPE() {
+        assertThrows(NullPointerException.class, () -> service.getTasksByStatus(null));
+    }
+
+    @Test
+    void getTasksByPriorityWithNullThrowsNPE() {
+        assertThrows(NullPointerException.class, () -> service.getTasksByPriority(null));
     }
 }

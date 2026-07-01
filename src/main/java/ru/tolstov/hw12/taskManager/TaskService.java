@@ -5,7 +5,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
 public class TaskService<T> {
-    private Set<Task<T>> tasks = ConcurrentHashMap.newKeySet();
+    private final Set<Task<T>> tasks = ConcurrentHashMap.newKeySet();
 
     public void add(Task<T> task) {
         Objects.requireNonNull(task, "task must not be null");
@@ -22,7 +22,7 @@ public class TaskService<T> {
         Objects.requireNonNull(priority, "priority must not be null");
         return Set.copyOf(
                 tasks.stream()
-                        .filter(task -> task.getStatus().equals(status) && task.getPriority().equals(priority))
+                        .filter(task -> status.equals(task.getStatus()) && priority.equals(task.getPriority()))
                         .collect(Collectors.toSet()));
     }
 
@@ -38,5 +38,21 @@ public class TaskService<T> {
                 .sorted((x, y) -> y.getDate().compareTo(x.getDate()))
                 .collect(Collectors.toCollection(LinkedHashSet::new)
                 );
+    }
+
+    public Set<Task<T>> getTasksByStatus(Status status) {
+        Objects.requireNonNull(status, "status must not be null");
+        return Set.copyOf(
+                tasks.stream()
+                        .filter(task -> status.equals(task.getStatus()))
+                        .collect(Collectors.toSet()));
+    }
+
+    public Set<Task<T>> getTasksByPriority(Priority priority) {
+        Objects.requireNonNull(priority, "priority must not be null");
+        return Set.copyOf(
+                tasks.stream()
+                        .filter(task -> priority.equals(task.getPriority()))
+                        .collect(Collectors.toSet()));
     }
 }
