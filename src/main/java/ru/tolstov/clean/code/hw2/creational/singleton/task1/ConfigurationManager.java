@@ -1,5 +1,8 @@
-package ru.tolstov.clean.code.hw2.creational.task1;
+package ru.tolstov.clean.code.hw2.creational.singleton.task1;
 
+/**
+ * ConfigurationManager был создан с концепцией, что он может быть в одном экземпляре и не изменяемым после инициализации.
+ */
 public class ConfigurationManager {
     private static ConfigurationManager instance;
     private  String pathToFile;

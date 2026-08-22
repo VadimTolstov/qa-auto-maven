@@ -1,4 +1,4 @@
-package ru.tolstov.clean.code.hw2.creational.task1;
+package ru.tolstov.clean.code.hw2.creational.singleton.task1;
 
 public class LoggingSetting {
     private final String loggingLevel;
