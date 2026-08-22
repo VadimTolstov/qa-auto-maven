@@ -4,6 +4,7 @@ import java.util.Objects;
 
 public abstract class Log {
     private final LoggerType loggerType;
+
     abstract void record(String message);
 
     public Log(LoggerType loggerType) {
