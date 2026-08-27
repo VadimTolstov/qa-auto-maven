@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class Task15Test {
+class Task14Test {
     /**
      * Тесты для проверки:
      * позитивные:
